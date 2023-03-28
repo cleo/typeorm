@@ -53,7 +53,7 @@ describe("find options > where", () => {
             }),
         ))
 
-    it("should skip null properties", () =>
+    it("should not skip null properties", () =>
         Promise.all(
             connections.map(async (connection) => {
                 await prepareData(connection)
@@ -72,9 +72,7 @@ describe("find options > where", () => {
                     })
                     .getMany()
 
-                posts1.should.be.eql([
-                    { id: 1, title: "Post #1", text: "About post #1" },
-                ])
+                posts1.should.be.eql([])
 
                 const posts2 = await connection
                     .createQueryBuilder(Post, "post")
@@ -89,10 +87,7 @@ describe("find options > where", () => {
                     })
                     .getMany()
 
-                posts2.should.be.eql([
-                    { id: 1, title: "Post #1", text: "About post #1" },
-                    { id: 2, title: "Post #2", text: "About post #2" },
-                ])
+                posts2.should.be.eql([])
             }),
         ))
 })
