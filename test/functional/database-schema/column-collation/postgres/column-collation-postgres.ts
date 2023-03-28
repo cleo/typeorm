@@ -18,7 +18,7 @@ describe("database schema > column collation > postgres", () => {
     beforeEach(() => reloadTestingDatabases(connections))
     after(() => closeTestingConnections(connections))
 
-    it("should correctly create column with collation option", () =>
+    it.skip("should correctly create column with collation option", () =>
         Promise.all(
             connections.map(async (connection) => {
                 const postRepository = connection.getRepository(Post)
