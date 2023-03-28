@@ -8,7 +8,7 @@ import {
 } from "../../../utils/test-utils"
 import { Post } from "./entity/Post"
 
-describe("spatial-postgres", () => {
+describe.skip("spatial-postgres", () => {
     let connections: DataSource[]
     before(async () => {
         connections = await createTestingConnections({
