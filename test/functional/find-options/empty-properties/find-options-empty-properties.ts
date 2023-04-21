@@ -29,7 +29,7 @@ describe("find options > where", () => {
         await connection.manager.save(post2)
     }
 
-    it("should skip undefined properties", () =>
+    it("should not skip undefined properties", () =>
         Promise.all(
             connections.map(async (connection) => {
                 await prepareData(connection)
@@ -47,9 +47,7 @@ describe("find options > where", () => {
                     })
                     .getMany()
 
-                posts.should.be.eql([
-                    { id: 1, title: "Post #1", text: "About post #1" },
-                ])
+                posts.should.be.eql([ ])
             }),
         ))
 
