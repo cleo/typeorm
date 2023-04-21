@@ -1478,7 +1478,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
                 } else {
                     return {
                         operator: "equal",
-                        parameters: [aliasPath, parameterValue.value],
+                        parameters: [aliasPath, parameterValue.value]
                     }
                 }
             } else if (parameterValue.type === "not") {
@@ -1487,13 +1487,13 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
                         operator: parameterValue.type,
                         condition: this.getWherePredicateCondition(
                             aliasPath,
-                            parameterValue.child,
-                        ),
+                            parameterValue.child
+                        )
                     }
                 } else {
                     return {
                         operator: "notEqual",
-                        parameters: [aliasPath, ...parameters],
+                        parameters: [aliasPath, ...parameters]
                     }
                 }
             } else if (parameterValue.type === "and") {
@@ -1505,28 +1505,28 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
                         this.createWhereConditionExpression(
                             this.getWherePredicateCondition(
                                 aliasPath,
-                                operator,
-                            ),
-                        ),
-                    ),
+                                operator
+                            )
+                        )
+                    )
                 }
             } else {
                 return {
                     operator: parameterValue.type,
-                    parameters: [aliasPath, ...parameters],
+                    parameters: [aliasPath, ...parameters]
                 }
             }
-            } else if (parameterValue === null) {
-                return {
-                    operator: "isNull",
-                    parameters: [
-                        aliasPath,
-                    ]
-                };
+        } else if (parameterValue === null || parameterValue === undefined) {
+            return {
+                operator: "isNull",
+                parameters: [
+                    aliasPath
+                ]
+            };
         } else {
             return {
                 operator: "equal",
-                parameters: [aliasPath, this.createParameter(parameterValue)],
+                parameters: [aliasPath, this.createParameter(parameterValue)]
             }
         }
     }
